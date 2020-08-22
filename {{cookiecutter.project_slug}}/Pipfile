@@ -11,6 +11,7 @@ pytest = "*"
 django-environ = "*"
 sentry-sdk = "*"
 redis = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
