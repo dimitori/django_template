@@ -8,5 +8,5 @@ set -e
 mkdir -p testing
 cd testing
 
-rm -Rf django
+rm -Rf django_template
 echo |cookiecutter ../
