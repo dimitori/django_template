@@ -12,6 +12,9 @@ django-environ = "*"
 sentry-sdk = "*"
 redis = "*"
 whitenoise = "*"
+djangorestframework = "*"
+drf-jwt = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.8"
