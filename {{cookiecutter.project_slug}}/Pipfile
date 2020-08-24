@@ -19,6 +19,7 @@ mixer = "*"
 pytest-django = "*"
 pytest-freezegun = "*"
 pytest-mock = "*"
+django-behaviors = "*"
 
 [requires]
 python_version = "3.8"
