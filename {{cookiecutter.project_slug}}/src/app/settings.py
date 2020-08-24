@@ -29,6 +29,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
+
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -51,6 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'app.urls'
+AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {
