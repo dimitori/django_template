@@ -20,6 +20,8 @@ pytest-django = "*"
 pytest-freezegun = "*"
 pytest-mock = "*"
 django-behaviors = "*"
+django-healthchecks = "*"
+djangorestframework-simplejwt = "*"
 
 [requires]
 python_version = "3.8"
