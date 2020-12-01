@@ -1,14 +1,14 @@
 #!/bin/bash -e
 
+pwd
 echo -ne "Running with "
 
-python --version
+python3 --version
 
 echo Creating and populating virtualenv..
 mkdir .venv
-export PIPENV_VENV_IN_PROJECT="enabled"
-pipenv install
-pipenv shell
+pipenv install --dev
+. .venv/bin/activate
 
 cd src
 

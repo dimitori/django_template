@@ -16,7 +16,7 @@ __all__ = [
 
 
 class DefaultQuerySet(models.QuerySet):
-    Q = None
+    Q = None  # flake8 VNE001
     """Q is a extension to Django queryset. Defining Q like this:
         class Q:
             @staticmethod
