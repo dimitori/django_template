@@ -1,11 +1,9 @@
+from behaviors.behaviors import Timestamped
 from copy import copy
-
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import F
 from django.db.models.functions import Coalesce
-
-from behaviors.behaviors import Timestamped
 
 __all__ = [
     'models',
@@ -16,7 +14,7 @@ __all__ = [
 
 
 class DefaultQuerySet(models.QuerySet):
-    Q = None  # flake8 VNE001
+    Q = None  # noqa VNE001
     """Q is a extension to Django queryset. Defining Q like this:
         class Q:
             @staticmethod

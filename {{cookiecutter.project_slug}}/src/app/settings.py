@@ -1,6 +1,5 @@
-import os
-
 import environ
+import os
 
 root = environ.Path(__file__) - 2        # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env(DEBUG=(bool, False))  # set default values and casting
@@ -111,8 +110,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'app.pagination.AppPagination',
     'PAGE_SIZE': env('PAGE_SIZE', cast=int, default=20),
 }
-
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
