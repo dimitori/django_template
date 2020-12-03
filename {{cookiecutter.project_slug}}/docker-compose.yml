@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  database1:
+    image: postgres:12-alpine
+    container_name: database1
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASS
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - database1_net
+    ports:
+      - "5532:5432"
+
+  web: &web
+    image: registry.gitlab.com/grafia-web/grafia-printers/printers_api:latest
+    build:
+      context: ./src
+    container_name: web
+    command: >
+      bash -c "chmod 777 -R /usr/src/app/wait-for && \
+               ./wait-for database1:5532 && \
+               python manage.py migrate && \
+               python manage.py collectstatic --no-input && \
+               gunicorn printers_service.wsgi:application --log-level=info --bind 0.0.0.0:8000 --workers=4"
+    volumes:
+      - ./src:/usr/src/app
+      - static_volume:/usr/src/static
+      - /var/www/printers/media:/usr/src/media
+
+    networks:
+      - database1_net
+      - cache
+    depends_on:
+      - database1
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6579:6379"
+    networks:
+      - cache
+
+networks:
+  database1_net:
+    driver: bridge
+  cache:
+    driver: overlay
+    attachable: true
+
+volumes:
+  postgres_data:
+  static_volume:
