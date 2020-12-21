@@ -1,7 +1,7 @@
 import environ
 import os
 
-root = environ.Path(__file__) - 2        # three folder back (/a/b/c/ - 3 = /)
+root = environ.Path(__file__) - 2        # two folder back (/a/b/ - 2 = /)
 env = environ.Env(DEBUG=(bool, False))  # set default values and casting
 environ.Env.read_env()                   # reading .env file
 SITE_ROOT = root()
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_jwt.blacklist',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -100,8 +101,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_RENDERER_CLASSES': [
         'app.renderers.AppJSONRenderer',
